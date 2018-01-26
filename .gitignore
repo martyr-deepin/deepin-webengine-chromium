@@ -1,1 +1,6 @@
 *.pyc
+
+chromium/tools/gn/out/
+ninja/build.ninja
+ninja/build/
+ninja/ninja
