@@ -261,9 +261,9 @@ struct regs_struct {
 #define SECCOMP_PARM3(_ctx)     SECCOMP_REG(_ctx, 6)
 #define SECCOMP_PARM4(_ctx)     SECCOMP_REG(_ctx, 7)
 #define SECCOMP_PARM5(_ctx)     SECCOMP_REG(_ctx, 8)
-#define SECCOMP_PARM5(_ctx)     SECCOMP_REG(_ctx, 9)
-#define SECCOMP_PARM5(_ctx)     SECCOMP_REG(_ctx, 10)
-#define SECCOMP_PARM5(_ctx)     SECCOMP_REG(_ctx, 11)
+#define SECCOMP_PARM6(_ctx)     SECCOMP_REG(_ctx, 9)
+#define SECCOMP_PARM7(_ctx)     SECCOMP_REG(_ctx, 10)
+#define SECCOMP_PARM8(_ctx)     SECCOMP_REG(_ctx, 11)
 #define SECCOMP_NR_IDX          (offsetof(struct arch_seccomp_data, nr))
 #define SECCOMP_ARCH_IDX        (offsetof(struct arch_seccomp_data, arch))
 #define SECCOMP_IP_MSB_IDX      (offsetof(struct arch_seccomp_data,           \
