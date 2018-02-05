@@ -61,6 +61,12 @@ SYSROOTS = {
         'Sha1Sum' : 'c0948a2c955588079dc31d688e8105730744ef45',
         'SysrootDir' : 'debian_wheezy_mips-sysroot'
     },
+    ('Jeesie', 'mips64': {
+        "Revision": "501a18940d0a78a40306050946032cbf8f14e7c0",
+        "Tarball": "debian_jessie_mips64_sysroot.tgz",
+        "Sha1Sum": "79f2c9fd33caf8c5c90a4621a80c379c747a8f7e",
+        "SysrootDir": "debian_jessie_mips64-sysroot"
+    },
     ('Jessie', 'arm64'): {
         'Revision' : '7d200a1ddfeb50dbf9f7e2c1c4ff1080679edf02',
         'Tarball' : 'debian_jessie_arm64_sysroot.tgz',
@@ -75,7 +81,7 @@ SYSROOTS = {
     }
 }
 
-valid_archs = ('arm', 'arm64', 'i386', 'amd64', 'mips')
+valid_archs = ('arm', 'arm64', 'i386', 'amd64', 'mips', 'mips64')
 
 
 class Error(Exception):
@@ -108,6 +114,8 @@ def DetectHostArch():
     return 'arm64'
   elif detected_host_arch == 'mips':
     return 'mips'
+  elif detected_host_arch == 'mips64':
+    return 'mips64'
   elif detected_host_arch == 'ppc':
     return 'ppc'
   elif detected_host_arch == 's390':
@@ -137,6 +145,8 @@ def DetectTargetArch():
     return 'arm64'
   elif target_arch == 'mipsel':
     return 'mips'
+  elif target_arch == 'mipsel64':
+    return 'mips64'
 
   return None
 

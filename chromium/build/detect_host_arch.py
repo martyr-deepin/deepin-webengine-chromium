@@ -21,6 +21,8 @@ def HostArch():
     host_arch = 'x64'
   elif host_arch.startswith('arm'):
     host_arch = 'arm'
+  elif host_arch.startswith('mips64'):
+    host_arch = 'mips64'
   elif host_arch.startswith('mips'):
     host_arch = 'mips'
   elif host_arch.startswith('ppc'):
