@@ -180,7 +180,7 @@ TEST(Syscall, ComplexSyscallSixArgs) {
       (char*)NULL,
       addr0 = reinterpret_cast<char*>(Syscall::Call(kMMapNr,
                                                     (void*)NULL,
-                                                    4096,
+                                                    4096*4,
                                                     PROT_READ,
                                                     MAP_PRIVATE | MAP_ANONYMOUS,
                                                     fd,
@@ -192,7 +192,7 @@ TEST(Syscall, ComplexSyscallSixArgs) {
             addr1 = reinterpret_cast<char*>(
                 Syscall::Call(kMMapNr,
                               addr0,
-                              4096L,
+                              4096*4L,
                               PROT_READ | PROT_WRITE,
                               MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED,
                               fd,
@@ -200,7 +200,7 @@ TEST(Syscall, ComplexSyscallSixArgs) {
   ++*addr1;  // This should not seg fault
 
   // Clean up
-  EXPECT_EQ(0, Syscall::Call(__NR_munmap, addr1, 4096L));
+  EXPECT_EQ(0, Syscall::Call(__NR_munmap, addr1, 4096*4L));
   EXPECT_EQ(0, IGNORE_EINTR(Syscall::Call(__NR_close, fd)));
 
   // Check that the offset argument (i.e. the sixth argument) is processed
@@ -211,31 +211,31 @@ TEST(Syscall, ComplexSyscallSixArgs) {
   char* addr2, *addr3;
   ASSERT_NE((char*)NULL,
             addr2 = reinterpret_cast<char*>(Syscall::Call(
-                kMMapNr, (void*)NULL, 8192L, PROT_READ, MAP_PRIVATE, fd, 0L)));
+                kMMapNr, (void*)NULL, 8192*4L, PROT_READ, MAP_PRIVATE, fd, 0L)));
   ASSERT_NE((char*)NULL,
             addr3 = reinterpret_cast<char*>(Syscall::Call(kMMapNr,
                                                           (void*)NULL,
-                                                          4096L,
+                                                          4096*4L,
                                                           PROT_READ,
                                                           MAP_PRIVATE,
                                                           fd,
 #if defined(__NR_mmap2)
                                                           1L
 #else
-                                                          4096L
+                                                          4096*4L
 #endif
                                                           )));
-  EXPECT_EQ(0, memcmp(addr2 + 4096, addr3, 4096));
+  EXPECT_EQ(0, memcmp(addr2 + 4096*4, addr3, 4096*4));
 
   // Just to be absolutely on the safe side, also verify that the file
   // contents matches what we are getting from a read() operation.
-  char buf[8192];
-  EXPECT_EQ(8192, Syscall::Call(__NR_read, fd, buf, 8192L));
-  EXPECT_EQ(0, memcmp(addr2, buf, 8192));
+  char buf[8192*4];
+  EXPECT_EQ(8192*4, Syscall::Call(__NR_read, fd, buf, 8192*4L));
+  EXPECT_EQ(0, memcmp(addr2, buf, 8192*4));
 
   // Clean up
-  EXPECT_EQ(0, Syscall::Call(__NR_munmap, addr2, 8192L));
-  EXPECT_EQ(0, Syscall::Call(__NR_munmap, addr3, 4096L));
+  EXPECT_EQ(0, Syscall::Call(__NR_munmap, addr2, 8192*4L));
+  EXPECT_EQ(0, Syscall::Call(__NR_munmap, addr3, 4096*4L));
   EXPECT_EQ(0, IGNORE_EINTR(Syscall::Call(__NR_close, fd)));
 }
 
