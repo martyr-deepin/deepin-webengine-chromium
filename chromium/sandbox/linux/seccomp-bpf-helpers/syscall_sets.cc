@@ -111,7 +111,8 @@ bool SyscallSets::IsFileSystem(int sysno) {
     case __NR_fchownat:  // Should be called chownat ?
 #if defined(__x86_64__) || defined(__aarch64__)
     case __NR_newfstatat:  // fstatat(). EPERM not a valid errno.
-#elif defined(__i386__) || defined(__arm__) || defined(__mips__)
+#elif defined(__i386__) || defined(__arm__) || \
+      (defined(__mips__) && (_MIPS_SIM == _ABIO32))
     case __NR_fstatat64:
 #endif
 #if defined(__i386__) || defined(__arm__)
@@ -544,7 +545,8 @@ bool SyscallSets::IsAllowedAddressSpaceAccess(int sysno) {
 bool SyscallSets::IsAllowedGeneralIo(int sysno) {
   switch (sysno) {
     case __NR_lseek:
-#if defined(__i386__) || defined(__arm__) || defined(__mips__)
+#if defined(__i386__) || defined(__arm__) || \
+      (defined(__mips__) && (_MIPS_SIM == _ABIO32))
     case __NR__llseek:
 #endif
 #if !defined(__aarch64__)
@@ -629,7 +631,8 @@ bool SyscallSets::IsAllowedBasicScheduler(int sysno) {
     case __NR_nanosleep:
       return true;
     case __NR_getpriority:
-#if defined(__i386__) || defined(__arm__) || defined(__mips__)
+#if defined(__i386__) || defined(__arm__) || \
+      (defined(__mips__) && (_MIPS_SIM == _ABIO32))
     case __NR_nice:
 #endif
     case __NR_setpriority:
