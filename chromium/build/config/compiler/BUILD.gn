@@ -426,7 +426,7 @@ config("compiler") {
     # GNU extension).
     # TODO(thakis): Eventually switch this to c++11 instead,
     # http://crbug.com/427584
-    cflags_cc += [ "-std=gnu11" ]
+    cflags_c += [ "-std=gnu11" ]
     cflags_cc += [ "-std=gnu++11" ]
   } else if (!is_win && !is_nacl) {
     # TODO(mcgrathr) - the NaCl GCC toolchain doesn't support either gnu++11
@@ -660,7 +660,7 @@ config("compiler_cpu_abi") {
           "-Wa,-march=loongson3a",
         ]
         ldfalgs += [ "-march=loongson3a" ]
-	  }
+      }
 
       if (mips_dsp_rev == 1) {
         cflags += [ "-mdsp" ]
