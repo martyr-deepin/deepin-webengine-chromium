@@ -14,7 +14,7 @@ if (current_cpu == "mipsel" || v8_current_cpu == "mipsel") {
     #   "r1"
     #   "r2"
     #   "r6"
-	#   "loongson3"
+    #   "loongson3"
     mips_arch_variant = "r1"
 
     # MIPS DSP ASE revision. Possible values are:
