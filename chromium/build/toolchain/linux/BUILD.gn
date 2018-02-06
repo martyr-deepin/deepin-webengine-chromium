@@ -172,6 +172,6 @@ gcc_toolchain("mips64el") {
     current_cpu = "mips64el"
     current_os = "linux"
     is_clang = false
-	use_goma = false
+    use_goma = false
   }
 }
