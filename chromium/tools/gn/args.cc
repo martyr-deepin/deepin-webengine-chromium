@@ -290,7 +290,7 @@ void Args::SetSystemVarsLocked(Scope* dest) const {
     arch = kMips64;
   else if (os_arch == "s390x")
     arch = kS390X;
-  else if (os_arch == "mips")
+  else if (os_arch == "ppc64" || os_arch == "ppc64le")
     arch = kPPC64;
   else
     CHECK(false) << "OS architecture not handled. (" << os_arch << ")";

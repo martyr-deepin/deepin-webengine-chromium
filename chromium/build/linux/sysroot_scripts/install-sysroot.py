@@ -145,7 +145,7 @@ def DetectTargetArch():
     return 'arm64'
   elif target_arch == 'mipsel':
     return 'mips'
-  elif target_arch == 'mipsel64':
+  elif target_arch == 'mips64el':
     return 'mips64'
 
   return None
@@ -217,6 +217,8 @@ def InstallDefaultSysrootForArch(target_arch):
     InstallSysroot('Jessie', 'arm64')
   elif target_arch == 'i386':
     InstallSysroot('Wheezy', 'i386')
+  elif target_arch == 'mips64':
+    InstallSysroot('Jessie', 'mips64')
   elif target_arch == 'mips':
     InstallSysroot('Wheezy', 'mips')
   else:
