@@ -14,6 +14,10 @@
 #include <malloc.h>
 #endif
 
+#if defined(__mips__)
+#define MEMORY_TOOL_REPLACES_ALLOCATOR
+#endif  // defined(__mips__)
+
 namespace base {
 namespace allocator {
 
